@@ -23,6 +23,12 @@ export class PrismaAddressesRepository implements AddressesRepository {
   async listAllAddressesByCustomerCnpj(
     customer_cnpj: string,
   ): Promise<Address[] | null> {
-    throw new Error('Method not implemented.')
+    const addresses = await prisma.address.findMany({
+      where: {
+        customer_cnpj,
+      },
+    })
+
+    return addresses
   }
 }
