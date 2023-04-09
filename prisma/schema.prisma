@@ -9,3 +9,12 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Customer {
+  cnpj         String @id @unique
+  razao_social String @unique
+  nome_contato String
+  tel          String
+
+  @@map("customers")
+}
