@@ -1,0 +1,17 @@
+# docker run --name "name" -e MYSQL_ROOT_PASSWORD="password" -e MYSQL_DATABASE="database" -p 3306:3306 -d mysql:latest
+# docker run --name api-teamsoft -e MYSQL_ROOT_PASSWORD=docker -e MYSQL_DATABASE=api-teamsoft -o 3306:3306 -d mysql:latest
+
+## Para subir o servidor:
+# docker compose up -d
+
+
+version: '3'
+
+services:
+  api-teamsoft:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=docker
+      - MYSQL_DATABASE=api-teamsoft
