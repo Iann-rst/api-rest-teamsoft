@@ -18,3 +18,16 @@ model Customer {
 
   @@map("customers")
 }
+
+model Address {
+  id          String  @id @default(uuid())
+  logradouro  String
+  complemento String?
+  bairro      String
+  cidade      String
+  estado      String
+  cep         String
+  numero      Int
+
+  @@map("addresses")
+}
