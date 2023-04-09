@@ -1,12 +1,9 @@
 import { Router } from 'express'
+import { register } from '../controllers/register'
 
 export const customerRoutes = Router()
 
-customerRoutes.get('/register', (request, response) => {
-  return response.status(202).json({
-    message: 'Registrar cliente',
-  })
-})
+customerRoutes.post('/register', register)
 
 customerRoutes.get('/:cnpj/details', (request, response) => {
   return response.status(200).json({
