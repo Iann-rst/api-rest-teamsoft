@@ -11,8 +11,13 @@ export class PrismaAddressesRepository implements AddressesRepository {
     return addresses.count
   }
 
-  async deleteAddressesByCustomerCnpj(customer_cnpj: string): Promise<void> {
-    throw new Error('Method not implemented.')
+  async deleteAddressesByCustomerCnpj(customer_cnpj: string): Promise<number> {
+    const addresses = await prisma.address.deleteMany({
+      where: {
+        customer_cnpj,
+      },
+    })
+    return addresses.count
   }
 
   async listAllAddressesByCustomerCnpj(

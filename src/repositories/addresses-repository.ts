@@ -7,7 +7,7 @@ import { Address, Prisma } from '@prisma/client'
 
 export interface AddressesRepository {
   create(data: Prisma.AddressCreateManyInput[]): Promise<number>
-  deleteAddressesByCustomerCnpj(customer_cnpj: string): Promise<void>
+  deleteAddressesByCustomerCnpj(customer_cnpj: string): Promise<number>
   listAllAddressesByCustomerCnpj(
     customer_cnpj: string,
   ): Promise<Address[] | null>
