@@ -3,6 +3,20 @@ import { CustomersRepository } from '@/repositories/customers-repository'
 import { Customer, Prisma } from '@prisma/client'
 
 export class PrismaCustomersRepository implements CustomersRepository {
+  async update(
+    cnpj: string,
+    data: Prisma.CustomerUpdateInput,
+  ): Promise<Customer> {
+    const customer = await prisma.customer.update({
+      where: {
+        cnpj,
+      },
+      data,
+    })
+
+    return customer
+  }
+
   async findByCnpj(cnpj: string): Promise<Customer | null> {
     const customer = await prisma.customer.findUnique({
       where: {

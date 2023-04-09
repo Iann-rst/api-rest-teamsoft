@@ -10,4 +10,5 @@ export interface CustomersRepository {
   findByRazaoSocial(razao_social: string): Promise<Customer | null>
   delete(cnpj: string): Promise<void>
   create(data: Prisma.CustomerCreateInput): Promise<Customer>
+  update(cnpj: string, data: Prisma.CustomerUpdateInput): Promise<Customer>
 }
