@@ -11,10 +11,11 @@ datasource db {
 }
 
 model Customer {
-  cnpj         String @id @unique
-  razao_social String @unique
+  cnpj         String    @id @unique
+  razao_social String    @unique
   nome_contato String
   tel          String
+  addresses    Address[]
 
   @@map("customers")
 }
@@ -28,6 +29,9 @@ model Address {
   estado      String
   cep         String
   numero      Int
+
+  customer      Customer @relation(fields: [customer_cnpj], references: [cnpj], onUpdate: Cascade, onDelete: Cascade)
+  customer_cnpj String
 
   @@map("addresses")
 }
