@@ -1,0 +1,251 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Cadastro, Leitura, Remoção e alteração de Cliente com endereços",
+    "description": "API para teste de backend - nodejs",
+    "version": "1.0.0",
+    "contact": {
+      "email": "iannrst11@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3333/customers"
+    }
+  ],
+  "paths": {
+    "/register": {
+      "post": {
+        "summary": "Cadastro de cliente com endereços",
+        "description": "Rota para cadastrar cliente com endereços",
+        "tags": [
+          "Customers"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Customers"
+              },
+              "examples": {
+                "customers": {
+                  "value": {
+                    "cnpj": "86485641000107",
+                    "razao_social": "John Doe",
+                    "nome_contato": "John Doe",
+                    "tel": "999999999",
+                    "addresses": [
+                      {
+                        "logradouro": "Rua A",
+                        "bairro": "Bairro A",
+                        "cidade": "Barreiras",
+                        "estado": "Bahia",
+                        "cep": "47802028",
+                        "numero": 2,
+                        "complemento": "Complemento do endereço"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/{cnpj}/details": {
+      "get": {
+        "tags": [
+          "Customers"
+        ],
+        "summary": "Listar as informações do cliente e seus endereços",
+        "description": "Listagem do cliente e endereços do mesmo.",
+        "parameters": [
+          {
+            "name": "cnpj",
+            "in": "path",
+            "description": "CNPJ do cliente",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseCustomerDetails"
+                },
+                "examples": {
+                  "Details Customer": {
+                    "value": {
+                      "cliente": {
+                        "cnpj": "86485641000107",
+                        "razao_social": "John Doe",
+                        "nome_contato": "John Doe",
+                        "tel": "999999999"
+                      },
+                      "endereços": [
+                        {
+                          "id": "42bf6592-f588-4226-8595-10447702c04f",
+                          "logradouro": "Rua A",
+                          "complemento": "Complemento do endereço",
+                          "bairro": "Bairro A",
+                          "cidade": "Barreiras",
+                          "estado": "Bahia",
+                          "cep": "47802028",
+                          "numero": 2,
+                          "customer_cnpj": "86485641000107"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error: Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Cliente não encontrado!"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Customers": {
+        "type": "object",
+        "properties": {
+          "cnpj": {
+            "type": "string"
+          },
+          "razao_social": {
+            "type": "string"
+          },
+          "nome_contato": {
+            "type": "string"
+          },
+          "tel": {
+            "type": "string"
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Address"
+            }
+          }
+        }
+      },
+      "Address": {
+        "type": "object",
+        "properties": {
+          "logradouro": {
+            "type": "string"
+          },
+          "bairro": {
+            "type": "string"
+          },
+          "cidade": {
+            "type": "string"
+          },
+          "estado": {
+            "type": "string"
+          },
+          "cep": {
+            "type": "string"
+          },
+          "numero": {
+            "type": "number"
+          },
+          "complemento": {
+            "type": "string"
+          }
+        }
+      },
+      "ResponseCustomerDetails": {
+        "type": "object",
+        "properties": {
+          "cliente": {
+            "type": "object",
+            "properties": {
+              "cnpj": {
+                "type": "string"
+              },
+              "razao_social": {
+                "type": "string"
+              },
+              "nome_contato": {
+                "type": "string"
+              },
+              "tel": {
+                "type": "string"
+              }
+            }
+          },
+          "endereços": {
+            "type": "array",
+            "items": {
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "logradouro": {
+                  "type": "string"
+                },
+                "complemento": {
+                  "type": "string"
+                },
+                "bairro": {
+                  "type": "string"
+                },
+                "cidade": {
+                  "type": "string"
+                },
+                "estado": {
+                  "type": "string"
+                },
+                "cep": {
+                  "type": "string"
+                },
+                "numero": {
+                  "type": "number"
+                },
+                "customer_cnpj": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
