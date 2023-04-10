@@ -36,9 +36,7 @@ export async function update(request: Request, response: Response) {
       tel,
     })
 
-    return response.status(201).send({
-      customer,
-    })
+    return response.status(201).json(customer.updated_customer)
   } catch (error) {
     if (error instanceof CustomerNotFound) {
       return response.status(404).send({
