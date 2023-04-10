@@ -29,6 +29,10 @@ export class InMemoryAddressesRepository implements AddressesRepository {
       (address) => address.customer_cnpj === customer_cnpj,
     )
 
+    if (addresses.length === 0) {
+      return null
+    }
+
     return addresses
   }
 }
