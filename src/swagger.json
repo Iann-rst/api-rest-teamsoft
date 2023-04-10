@@ -136,6 +136,47 @@
           }
         }
       }
+    },
+    "/{cnpj}/delete": {
+      "delete": {
+        "tags": [
+          "Customers"
+        ],
+        "summary": "Remover Cliente e seus endereços",
+        "description": "Deletar Cliente e todos seus endereços.",
+        "parameters": [
+          {
+            "name": "cnpj",
+            "in": "path",
+            "description": "CNPJ do cliente",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Error: Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Cliente não encontrado!"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
     }
   },
   "components": {
