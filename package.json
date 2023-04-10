@@ -6,7 +6,9 @@
   "scripts": {
     "start:dev": "tsx watch src/server.ts",
     "start": "node build/server.js",
-    "build": "tsup src --out-dir build"
+    "build": "tsup src --out-dir build",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "author": "Iann Rodrigues",
   "license": "ISC",
@@ -25,6 +27,8 @@
     "prisma": "4.12.0",
     "tsup": "6.7.0",
     "tsx": "3.12.6",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "vite-tsconfig-paths": "4.0.8",
+    "vitest": "0.30.0"
   }
 }
