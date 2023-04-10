@@ -35,10 +35,10 @@ docker-compose up -d
 npm run start:dev
 ```
 
-**OBS: Possa ser que demore alguns minutos para o container do docker ficar pronto para uso na primeira vez (ele irá baixar a imagem mysql, configurar root e database). Enquanto ele não estiver pronto, ao tentar executar o comando a baixo, irá gerar um erro de conexão recusada.**
+**OBS: Possa ser que demore alguns minutos para o container do docker ficar pronto para uso na primeira vez (ele irá baixar a imagem mysql, configurar root e database). Enquanto ele não estiver pronto, ao tentar executar o comando abaixo, irá gerar um erro de conexão recusada.**
 
 ```sh
-# Em outro terminal, aberto na pasta da API. Execute o comando para criação das tabelas no banco de dados
+# Em outro terminal, aberto na pasta da API, execute o comando para executar as migrations: Criação das tabelas e do relacionamento entre elas.
 npx prisma migrate dev
 ```
 
