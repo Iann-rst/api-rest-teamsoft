@@ -10,19 +10,8 @@ const updateCustomerAndAddressesParamsSchema = z.object({
 })
 
 const bodySchema = z.object({
-  razao_social: z
-    .string({ required_error: 'Informe a Razão Social.' })
-    .trim()
-    .nonempty('Informe a Razão Social.'),
-
-  nome_contato: z
-    .string({ required_error: 'Informe o nome do contato.' })
-    .trim()
-    .nonempty('Informe o Nome do Contato.'),
-  tel: z
-    .string({ required_error: 'Informe o telefone de contato.' })
-    .trim()
-    .nonempty('Informe o telefone de contato.'),
+  nome_contato: z.string().optional(),
+  tel: z.string().optional(),
 })
 
 export type IPropsUpdate = z.infer<
@@ -36,7 +25,7 @@ export async function update(request: Request, response: Response) {
       request.params,
     )
 
-    const { nome_contato, razao_social, tel } = bodySchema.parse(request.body)
+    const { nome_contato, tel } = bodySchema.parse(request.body)
 
     const customersRepository = new PrismaCustomersRepository()
     const updateUseCase = new UpdateUseCase(customersRepository)
@@ -44,7 +33,6 @@ export async function update(request: Request, response: Response) {
     const customer = await updateUseCase.execute({
       cnpj,
       nome_contato,
-      razao_social,
       tel,
     })
 
