@@ -27,7 +27,7 @@ export class InMemoryCustomersRepository implements CustomersRepository {
   }
 
   async delete(cnpj: string): Promise<void> {
-    this.customers.filter((customer) => customer.cnpj !== cnpj)
+    this.customers = this.customers.filter((customer) => customer.cnpj !== cnpj)
   }
 
   async create(data: Prisma.CustomerCreateInput): Promise<Customer> {

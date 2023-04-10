@@ -19,7 +19,9 @@ export class InMemoryAddressesRepository implements AddressesRepository {
   }
 
   async deleteAddressesByCustomerCnpj(customer_cnpj: string): Promise<void> {
-    this.addresses.filter((address) => address.customer_cnpj !== customer_cnpj)
+    this.addresses = this.addresses.filter(
+      (address) => address.customer_cnpj !== customer_cnpj,
+    )
   }
 
   async listAllAddressesByCustomerCnpj(
