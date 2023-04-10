@@ -33,9 +33,12 @@ docker-compose up -d
 
 # Subir o servidor HTTP
 npm run start:dev
+```
 
+**OBS: Possa ser que demore alguns minutos para o container do docker ficar pronto para uso na primeira vez (ele irá baixar a imagem mysql, configurar root e database). Enquanto ele não estiver pronto, ao tentar executar o comando a baixo, irá gerar um erro de conexão recusada.**
+
+```sh
 # Em outro terminal, aberto na pasta da API. Execute o comando para criação das tabelas no banco de dados
-# OBS: Possa ser que demore alguns minutos para o container do banco de dados mysql está pronto para utilizar
 npx prisma migrate dev
 ```
 
