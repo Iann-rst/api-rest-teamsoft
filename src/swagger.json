@@ -177,6 +177,89 @@
           }
         }
       }
+    },
+    "/{cnpj}/update": {
+      "put": {
+        "tags": [
+          "Customers"
+        ],
+        "summary": "Atualizar as informações do Cliente (nome do contato e telefone).",
+        "description": "Atualizar as informações do Cliente.",
+        "parameters": [
+          {
+            "name": "cnpj",
+            "in": "path",
+            "description": "CNPJ do cliente",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome_contato": {
+                    "type": "string"
+                  },
+                  "tel": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Update Customer": {
+                  "value": {
+                    "tel": "888888888",
+                    "nome_contato": "John Doe Doe"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Atualizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdatedCustomer"
+                },
+                "examples": {
+                  "Updated Customer": {
+                    "value": {
+                      "cnpj": "86485641000107",
+                      "razao_social": "John Doe",
+                      "nome_contato": "John Doe Doe",
+                      "tel": "888888888"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error: Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Cliente não encontrado!"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -284,6 +367,23 @@
                 }
               }
             }
+          }
+        }
+      },
+      "UpdatedCustomer": {
+        "type": "object",
+        "properties": {
+          "cnpj": {
+            "type": "string"
+          },
+          "razao_social": {
+            "type": "string"
+          },
+          "nome_contato": {
+            "type": "string"
+          },
+          "tel": {
+            "type": "string"
           }
         }
       }
