@@ -10,6 +10,7 @@ version: '3'
 services:
   api-teamsoft:
     image: mysql:latest
+    container_name: api-rest
     ports:
       - 3306:3306
     environment:
