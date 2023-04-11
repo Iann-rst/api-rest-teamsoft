@@ -172,8 +172,20 @@
               }
             }
           },
-          "204": {
-            "description": "No Content"
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Cliente removido com sucesso!"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

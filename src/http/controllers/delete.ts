@@ -24,7 +24,9 @@ export async function deleteController(request: Request, response: Response) {
 
     await deleteUseCase.execute(cnpj)
 
-    return response.status(204).send()
+    return response.status(200).json({
+      message: 'Cliente removido com sucesso!',
+    })
   } catch (error) {
     if (error instanceof CustomerNotFound) {
       return response.status(404).json({
