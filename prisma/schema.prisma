@@ -21,7 +21,7 @@ model Customer {
 }
 
 model Address {
-  id          String  @id @default(uuid())
+  id          String   @id @default(uuid())
   logradouro  String
   complemento String?
   bairro      String
@@ -29,6 +29,8 @@ model Address {
   estado      String
   cep         String
   numero      Int
+  latitude    Decimal?
+  longitude   Decimal?
 
   customer      Customer @relation(fields: [customer_cnpj], references: [cnpj], onUpdate: Cascade, onDelete: Cascade)
   customer_cnpj String
