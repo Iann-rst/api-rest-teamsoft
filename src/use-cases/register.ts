@@ -48,7 +48,11 @@ export class RegisterUseCase {
 
     // Adicionar o cnpj do cliente para cada endereço (chave estrangeira da tabela endereço)
     const new_data = addresses.map((address) => {
-      return { ...address, customer_cnpj: customer.cnpj }
+      return {
+        ...address,
+        customer_cnpj: customer.cnpj,
+        complemento: address.complemento ? address.complemento : '',
+      }
     })
     const number_of_addressed_created = await this.addressesRepository.create(
       new_data,

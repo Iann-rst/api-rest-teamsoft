@@ -15,7 +15,9 @@ const addressSchema = z.object({
     required_error: 'Informe o número.',
     invalid_type_error: 'Informe um valor numérico',
   }),
-  complemento: z.string().nullable(),
+  complemento: z.string().optional(),
+  latitude: z.string().optional(),
+  longitude: z.string().optional(),
   bairro: z
     .string({ required_error: 'Informe o Bairro' })
     .trim()
